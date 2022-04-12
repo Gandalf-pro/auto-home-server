@@ -9,7 +9,9 @@ import logger from 'morgan';
 import path from 'path';
 import './mqttServer';
 import './serverDiscovery';
+import './timedTasks'
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import apiEndpointRouter from './routes';
 
@@ -19,6 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));

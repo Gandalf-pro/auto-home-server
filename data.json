@@ -1,1 +1,240 @@
-{"devices":[{"name":"default","room":"default","features":[{"data":{"state":false},"name":"Light","type":"LightFeature"}]},{"name":"default","room":"default","features":[{"data":{"state":false},"name":"Light","type":"LightFeature"}]},{"name":"default","room":"default","features":[{"data":{"state":false},"name":"Light","type":"LightFeature"}]},{"name":"default","room":"default","features":[{"data":{"state":true},"name":"Light","type":"LightFeature"}]},{"name":"default","room":"default","features":[{"data":{"state":true},"name":"Light","type":"LightFeature"}]},{"name":"default","room":"default","features":[{"data":{"state":false},"name":"Light","type":"LightFeature"}]},{"name":"default","room":"default","features":[{"data":{"state":false},"name":"Light","type":"LightFeature"}]}],"extraData":{"default/default":{"lastRegisteryDate":"2022-02-28T00:01:49.449Z"}}}
+{
+    "devices": [{
+        "name": "leds",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "r": 255,
+                "g": 213,
+                "b": 0
+            },
+            "name": "northLights",
+            "type": "LedFeature"
+        }, {
+            "data": {
+                "r": 255,
+                "g": 213,
+                "b": 0
+            },
+            "name": "eastLights",
+            "type": "LedFeature"
+        }]
+    }, {
+        "name": "BlindsAc",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "power": "0",
+                "temp": "26",
+                "fan": "9",
+                "mode": "1",
+                "swing": "0"
+            },
+            "name": "ac",
+            "type": "AcFeature"
+        }, {
+            "data": {
+                "blindsLevel": 0
+            },
+            "name": "blinds",
+            "type": "BlindsFeature"
+        }, {
+            "data": {
+                "lightLevel": 64
+            },
+            "name": "lightLevel",
+            "type": "LightLevelFeature"
+        }]
+    }, {
+        "name": "leds",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
+            "name": "northLights",
+            "type": "LedFeature"
+        }, {
+            "data": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
+            "name": "eastLights",
+            "type": "LedFeature"
+        }]
+    }, {
+        "name": "BlindsAc",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "power": "0",
+                "temp": "26",
+                "fan": "9",
+                "mode": "1",
+                "swing": "0"
+            },
+            "name": "ac",
+            "type": "AcFeature"
+        }, {
+            "data": {
+                "blindsLevel": 0
+            },
+            "name": "blinds",
+            "type": "BlindsFeature"
+        }, {
+            "data": {
+                "lightLevel": 85
+            },
+            "name": "lightLevel",
+            "type": "LightLevelFeature"
+        }]
+    }, {
+        "name": "leds",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "r": 255,
+                "g": 213,
+                "b": 0
+            },
+            "name": "northLights",
+            "type": "LedFeature"
+        }, {
+            "data": {
+                "r": 255,
+                "g": 213,
+                "b": 0
+            },
+            "name": "eastLights",
+            "type": "LedFeature"
+        }]
+    }, {
+        "name": "BlindsAc",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "power": "0",
+                "temp": "26",
+                "fan": "9",
+                "mode": "1",
+                "swing": "0"
+            },
+            "name": "ac",
+            "type": "AcFeature"
+        }, {
+            "data": {
+                "blindsLevel": 0
+            },
+            "name": "blinds",
+            "type": "BlindsFeature"
+        }, {
+            "data": {
+                "lightLevel": 65
+            },
+            "name": "lightLevel",
+            "type": "LightLevelFeature"
+        }]
+    }, {
+        "name": "leds",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "r": 255,
+                "g": 213,
+                "b": 0
+            },
+            "name": "northLights",
+            "type": "LedFeature"
+        }, {
+            "data": {
+                "r": 255,
+                "g": 213,
+                "b": 0
+            },
+            "name": "eastLights",
+            "type": "LedFeature"
+        }]
+    }, {
+        "name": "leds",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "r": 255,
+                "g": 0,
+                "b": 247
+            },
+            "name": "northLights",
+            "type": "LedFeature"
+        }, {
+            "data": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "name": "eastLights",
+            "type": "LedFeature"
+        }]
+    }, {
+        "name": "BlindsAc",
+        "room": "ozgur",
+        "features": [{
+            "data": {
+                "power": "0",
+                "temp": "26",
+                "fan": "9",
+                "mode": "1",
+                "swing": "0"
+            },
+            "name": "ac",
+            "type": "AcFeature"
+        }, {
+            "data": {
+                "blindsLevel": 0
+            },
+            "name": "blinds",
+            "type": "BlindsFeature"
+        }, {
+            "data": {
+                "lightLevel": 69
+            },
+            "name": "lightLevel",
+            "type": "LightLevelFeature"
+        }]
+    }],
+    "automations": [{
+        "timeout": 10,
+        "id": "add60f28-f5bf-4caa-8dc7-f389962ed8a6",
+        "name": "New Date",
+        "condition": {
+            "e6717af1-620c-4640-9204-b439eb619326": {
+                "featureUrl": "",
+                "id": "e6717af1-620c-4640-9204-b439eb619326",
+                "operation": ">",
+                "value": "2022-04-10T22:00:00.674Z",
+                "type": "time",
+                "dataKey": "now-hour"
+            },
+            "fb912bc8-8cc5-429f-b262-cf2ea8be9405": {
+                "featureUrl": "",
+                "id": "fb912bc8-8cc5-429f-b262-cf2ea8be9405",
+                "operation": "<",
+                "value": "2022-04-11T00:00:00.635Z",
+                "type": "time",
+                "dataKey": "now-hour"
+            }
+        },
+        "conditionExpression": ["e6717af1-620c-4640-9204-b439eb619326", "&&", "fb912bc8-8cc5-429f-b262-cf2ea8be9405"],
+        "action": {
+            "featureUrl": "ozgur/leds/eastLights",
+            "data": {
+                "r": 0,
+                "g": 195,
+                "b": 255
+            }
+        }
+    }],
+    "extraData": {}
+}

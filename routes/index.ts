@@ -1,12 +1,15 @@
 import express from 'express';
 import dataHandler from '../dataHandler';
 import InputError from '../errors/InputError';
+import convertRange from '../utils/convertRange';
+import automationsRouter from './automations';
 import dataGettingRouter from './dataGetting';
 
 const router = express.Router();
 
 // Endpoints
 router.use(dataGettingRouter);
+router.use('/automations', automationsRouter);
 
 // Data setting endpoint
 router.post('/execute/:room/:device/:feature', async (req, res, next) => {
@@ -31,7 +34,5 @@ router.post('/execute/:room/:device/:feature', async (req, res, next) => {
 		next(error);
 	}
 });
-
-
 
 export default router;

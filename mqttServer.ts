@@ -29,6 +29,7 @@ class MqttServer extends EventEmitter {
 		// When a device registers itself
 		this.client.subscribe('register-device');
 		this.client.subscribe('devices');
+		this.client.subscribe('data');
 
 		// Emit events on topic when we get a message from the arduinos
 		this.client.on('message', (topic, payload, packet) => {
@@ -44,10 +45,10 @@ class MqttServer extends EventEmitter {
 	// Handles the device registration
 	private handleRegisterDevice(payload: string, packet: IPublishPacket) {
 		// Turn the data into a Device object
-		console.log("Payload:", payload);
+		console.log('Payload:', payload);
 		const data = JSON.parse(payload);
-		console.log("Register device:",data);
-		
+		console.log('Register device:', data);
+
 		const device = new Device(data);
 		dataHandler.registerDevice(device);
 	}
@@ -59,27 +60,18 @@ class MqttServer extends EventEmitter {
 	// Handles data updates from devices
 	private handleDataUpdate(payload: string, packet: IPublishPacket) {
 		const data = JSON.parse(payload);
-		// Get the device info from the data
-		const { room, device, feature } = data;
-		if (!room || !device || !feature || !data.data) {
-			return;
-		}
-		//  Get the device from the dataStore
-		const fea = dataHandler.getFeature(room, device, feature);
-		// Check if this feature exists
-		if (fea === null) {
-			return;
-		}
-		// Set the data
-		fea.setData(data.data);
+		console.log("Got data:", data);
+		
+		const device = new Device(data);
+		dataHandler.handleFreshDataFromDevice(device);
 	}
 
 	async sendDataToDevice(room: string, device: string, data = {}) {
 		return new Promise<number>((resolve, reject) => {
 			// Sending to topic
-			console.log("Topic:",`${room}/${device}`);
-			console.log("Data:",data);
-			
+			console.log('Topic:', `${room}/${device}`);
+			console.log('Data:', data);
+
 			this.client.publish(
 				`${room}/${device}`,
 				JSON.stringify(data),
@@ -91,6 +83,24 @@ class MqttServer extends EventEmitter {
 					}
 				}
 			);
+		});
+	}
+
+	async publish(
+		topic: string,
+		payload: string | Buffer | { [x: string]: any }
+	) {
+		if (typeof payload === 'object' && !Buffer.isBuffer(payload)) {
+			payload = JSON.stringify(payload);
+		}
+		return new Promise<number>((resolve, reject) => {
+			this.client.publish(topic, payload as string, (error, packet) => {
+				if (error) {
+					reject(error);
+				} else {
+					resolve(packet?.messageId);
+				}
+			});
 		});
 	}
 }

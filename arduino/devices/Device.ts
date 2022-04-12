@@ -14,6 +14,7 @@ class Device {
 		this.name = dev.name;
 		this.room = dev.room;
 		dev.features.forEach((fea) => {
+			if (!fea) return;
 			this.features[fea.name] = new Feature({ ...fea, device: this });
 		});
 	}
@@ -68,6 +69,15 @@ class Device {
 
 	getFeaturesArray() {
 		return Object.values(this.features);
+	}
+
+	updateFeatureDatas(device: Device) {
+		for (const fea of Object.values(device.features)) {
+			const localFeature = this.getFeature(fea);
+			if (localFeature) {
+				localFeature.setData(fea.getData());
+			}
+		}
 	}
 }
 

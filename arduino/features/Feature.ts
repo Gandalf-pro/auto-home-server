@@ -8,8 +8,8 @@ export interface DataInterface {
 export interface FeatureJsonInterface {
 	name: string;
 	type: string;
-	availableLogics: string[];
-	availableActions: string[];
+	availableLogics?: string[];
+	availableActions?: string[];
 	data: DataInterface;
 }
 
@@ -20,6 +20,10 @@ class Feature {
 	private availableLogics: string[];
 	private availableActions: string[];
 	private data: DataInterface = {};
+
+	private lastExecutedBy?: 'user' | 'automation';
+	private lastExecutedDate?: Date;
+	private lastDataRefreshDate?: Date;
 	constructor(params: FeatureJsonInterface & { device: Device }) {
 		this.device = params.device;
 		this.name = params.name;
@@ -81,6 +85,7 @@ class Feature {
 
 	setData(data: DataInterface) {
 		this.data = data;
+		this.lastDataRefreshDate = new Date();
 	}
 
 	getAvailableLogics() {
@@ -99,7 +104,7 @@ class Feature {
 		this.availableActions = actions;
 	}
 
-	async execute(data: DataInterface) {
+	async execute(data: DataInterface, by: 'user' | 'automation' = 'user') {
 		try {
 			// Send the data to the device
 			await mqttServer.sendDataToDevice(
@@ -112,6 +117,8 @@ class Feature {
 			);
 			// Set the data
 			this.setData({ ...this.getData(), ...data });
+			this.lastExecutedDate = new Date();
+			this.lastExecutedBy = by;
 		} catch (error) {
 			console.error('Error:', error);
 		}
