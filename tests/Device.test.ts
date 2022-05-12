@@ -48,4 +48,16 @@ it('Tests the device methods', () => {
 		availableActions: undefined,
 		availableLogics: undefined,
 	});
+
+	const fea = dev.getFeatureWithName('northLights');
+	fea.setData({
+		r: 0,
+		g: 0,
+		b: 0,
+	});
+	expect(fea.getData()).toEqual({
+		r: 0,
+		g: 0,
+		b: 0,
+	});
 });

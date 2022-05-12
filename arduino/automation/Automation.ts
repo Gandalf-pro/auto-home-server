@@ -93,10 +93,11 @@ class Automation {
 						);
 					case 'now-hour':
 						const day = dayjs(condition.value);
-						day.year(now.year());
-						day.month(now.month());
-						day.day(now.day());
-						return tmp[condition.operation]?.(day, 'minute');
+						const givenHour = day.hour() * 60 + day.minute();
+						const nowHour = now.hour() * 60 + now.minute();
+						return eval(
+							`${nowHour} ${condition.operation} ${givenHour}`
+						);
 					default:
 						break;
 				}
